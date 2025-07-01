@@ -147,6 +147,11 @@ const modalContent = document.getElementById('modalContent');
 const closeModal = document.querySelector('.close');
 const categoryCards = document.querySelectorAll('.category-card');
 
+// Elementos da busca
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+const clearSearch = document.getElementById('clearSearch');
+
 // Menu mobile
 navToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
@@ -355,12 +360,115 @@ function criarParticulas() {
     }
 }
 
+// Funções de Busca
+function inicializarBusca() {
+    let searchTimeout;
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim().toLowerCase();
+        
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            if (query.length >= 2) {
+                buscarProdutos(query);
+            } else {
+                ocultarResultadosBusca();
+            }
+        }, 300);
+    });
+
+    searchInput.addEventListener('focus', () => {
+        if (searchInput.value.trim().length >= 2) {
+            buscarProdutos(searchInput.value.trim().toLowerCase());
+        }
+    });
+
+    // Limpar busca
+    clearSearch.addEventListener('click', () => {
+        searchInput.value = '';
+        ocultarResultadosBusca();
+        searchInput.focus();
+    });
+
+    // Fechar resultados ao clicar fora
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            ocultarResultadosBusca();
+        }
+    });
+
+    // Navegação com teclado
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            ocultarResultadosBusca();
+            searchInput.blur();
+        }
+    });
+}
+
+function buscarProdutos(query) {
+    const resultados = produtos.filter(produto => 
+        produto.nome.toLowerCase().includes(query) ||
+        produto.descricao.toLowerCase().includes(query) ||
+        produto.categoria.toLowerCase().includes(query)
+    );
+
+    mostrarResultadosBusca(resultados, query);
+}
+
+function mostrarResultadosBusca(resultados, query) {
+    if (resultados.length === 0) {
+        searchResults.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-search"></i>
+                <p>Nenhum produto encontrado para "${query}"</p>
+                <small>Tente buscar por outro termo</small>
+            </div>
+        `;
+    } else {
+        searchResults.innerHTML = resultados.map(produto => `
+            <div class="search-result-item" onclick="selecionarProdutoBusca(${produto.id})">
+                <div class="search-result-icon">
+                    <i class="${produto.imagem}"></i>
+                </div>
+                <div class="search-result-info">
+                    <div class="search-result-name">${produto.nome}</div>
+                    <div class="search-result-category">${produto.categoria}</div>
+                </div>
+                <div class="search-result-price">${produto.preco}</div>
+            </div>
+        `).join('');
+    }
+
+    searchResults.classList.add('active');
+    clearSearch.style.display = 'block';
+}
+
+function ocultarResultadosBusca() {
+    searchResults.classList.remove('active');
+    clearSearch.style.display = 'none';
+}
+
+function selecionarProdutoBusca(produtoId) {
+    ocultarResultadosBusca();
+    searchInput.value = '';
+    
+    // Abrir modal do produto
+    abrirModal(produtoId);
+    
+    // Scroll para a seção de produtos
+    document.getElementById('produtos').scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     carregarProdutos();
     animarElementos();
     headerScroll();
     criarParticulas();
+    inicializarBusca();
 });
 
 // Estilos adicionais para o modal

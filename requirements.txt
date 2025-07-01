@@ -1,0 +1,2 @@
+# Arquivo vazio - site estático não precisa de dependências Python
+# O Railway usará o servidor HTTP embutido do Python 
