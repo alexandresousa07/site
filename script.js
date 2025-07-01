@@ -667,8 +667,10 @@ if (mobileSearchInput) {
                     </div>
                 `).join('');
             }
+            mobileSearchResults.style.display = 'block';
         } else {
             mobileSearchResults.innerHTML = '';
+            mobileSearchResults.style.display = 'none';
         }
     });
 }
