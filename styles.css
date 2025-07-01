@@ -1338,4 +1338,68 @@ body::before {
     .chatbot-messages {
         max-height: 50vh;
     }
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        width: 100vw;
+        max-width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .modal-product {
+        padding: 0.5rem 0;
+    }
+    .modal-product-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    .modal-product-image {
+        font-size: 2.5rem;
+        padding: 1rem;
+        min-width: 80px;
+    }
+    .modal-product-info h2 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+    .modal-product-description {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+    .modal-product-specs h3 {
+        font-size: 1.05rem;
+        margin-bottom: 0.5rem;
+    }
+    .specs-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    .modal-product-actions {
+        flex-direction: column;
+        gap: 0.7rem;
+        margin-top: 1.2rem;
+        width: 100%;
+    }
+    .modal-product-actions .btn {
+        width: 100%;
+        font-size: 1rem;
+        padding: 1rem 0;
+    }
+    .close {
+        right: 0.7rem;
+        top: 0.7rem;
+        width: 36px;
+        height: 36px;
+        font-size: 1.5rem;
+    }
 } 
