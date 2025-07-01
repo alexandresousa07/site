@@ -2,98 +2,138 @@
 const produtos = [
     {
         id: 1,
-        nome: "iPhone 15 Pro",
+        nome: "iPhone 15 Pro Max",
         categoria: "smartphones",
-        preco: "R$ 8.999",
-        descricao: "O mais recente smartphone da Apple com chip A17 Pro e câmera tripla.",
+        preco: "R$ 9.999",
+        descricao: "O smartphone mais avançado da Apple com chip A17 Pro, câmera tripla de 48MP e design em titânio.",
         imagem: "fas fa-mobile-alt",
         especificacoes: {
-            "Tela": "6.1 polegadas OLED",
-            "Processador": "A17 Pro",
+            "Tela": "6.7 polegadas Super Retina XDR OLED",
+            "Processador": "A17 Pro com Neural Engine",
             "RAM": "8GB",
-            "Armazenamento": "128GB/256GB/512GB/1TB",
+            "Armazenamento": "256GB/512GB/1TB",
             "Câmera": "Tripla 48MP + 12MP + 12MP",
-            "Bateria": "3650mAh"
+            "Bateria": "4441mAh com carregamento rápido",
+            "Sistema": "iOS 17"
         }
     },
     {
         id: 2,
-        nome: "MacBook Air M2",
+        nome: "MacBook Pro M3 Max",
         categoria: "laptops",
-        preco: "R$ 9.999",
-        descricao: "Notebook ultraportátil com chip M2 da Apple, perfeito para produtividade.",
+        preco: "R$ 24.999",
+        descricao: "Notebook profissional com chip M3 Max, até 128GB de RAM unificada e tela Liquid Retina XDR.",
         imagem: "fas fa-laptop",
         especificacoes: {
-            "Tela": "13.6 polegadas Retina",
-            "Processador": "Apple M2",
-            "RAM": "8GB/16GB",
-            "Armazenamento": "256GB/512GB/1TB/2TB",
-            "Sistema": "macOS Ventura",
-            "Bateria": "Até 18 horas"
+            "Tela": "16 polegadas Liquid Retina XDR",
+            "Processador": "Apple M3 Max",
+            "RAM": "32GB/64GB/128GB unificada",
+            "Armazenamento": "1TB/2TB/4TB/8TB SSD",
+            "GPU": "Integrada M3 Max",
+            "Sistema": "macOS Sonoma",
+            "Bateria": "Até 22 horas"
         }
     },
     {
         id: 3,
-        nome: "AirPods Pro",
+        nome: "AirPods Pro 2",
         categoria: "acessorios",
-        preco: "R$ 2.499",
-        descricao: "Fones de ouvido sem fio com cancelamento de ruído ativo e áudio espacial.",
+        preco: "R$ 2.999",
+        descricao: "Fones de ouvido sem fio com cancelamento de ruído adaptativo e áudio espacial personalizado.",
         imagem: "fas fa-headphones",
         especificacoes: {
             "Tipo": "Intra-auricular sem fio",
-            "Cancelamento de Ruído": "Ativo",
-            "Áudio Espacial": "Sim",
-            "Bateria": "Até 6 horas (24h com case)",
-            "Conexão": "Bluetooth 5.0",
-            "Compatibilidade": "iOS, Android, macOS"
+            "Cancelamento de Ruído": "Adaptativo ativo",
+            "Áudio Espacial": "Personalizado com head tracking",
+            "Bateria": "Até 6 horas (30h com case)",
+            "Conexão": "Bluetooth 5.3",
+            "Compatibilidade": "iOS, Android, macOS",
+            "Resistência": "IPX4 (água e suor)"
         }
     },
     {
         id: 4,
-        nome: "PlayStation 5",
+        nome: "PlayStation 5 Pro",
         categoria: "gaming",
-        preco: "R$ 4.499",
-        descricao: "Console de nova geração com gráficos 4K e SSD ultrarrápido.",
+        preco: "R$ 5.999",
+        descricao: "Console de nova geração com gráficos 8K, ray tracing avançado e SSD ultrarrápido de 2TB.",
         imagem: "fas fa-gamepad",
         especificacoes: {
-            "Processador": "AMD Zen 2 8-core",
-            "GPU": "AMD RDNA 2 10.28 TFLOPs",
-            "RAM": "16GB GDDR6",
-            "Armazenamento": "825GB SSD",
+            "Processador": "AMD Zen 4 8-core",
+            "GPU": "AMD RDNA 4 18 TFLOPs",
+            "RAM": "24GB GDDR7",
+            "Armazenamento": "2TB SSD NVMe",
             "Resolução": "Até 8K",
-            "Ray Tracing": "Sim"
+            "Ray Tracing": "Avançado com AI",
+            "Compatibilidade": "PS4, PS5"
         }
     },
     {
         id: 5,
-        nome: "Samsung Galaxy S24",
+        nome: "Samsung Galaxy S24 Ultra",
         categoria: "smartphones",
-        preco: "R$ 6.999",
-        descricao: "Flagship da Samsung com IA integrada e câmera de 200MP.",
+        preco: "R$ 8.999",
+        descricao: "Flagship da Samsung com IA integrada, câmera de 200MP e S Pen integrado.",
         imagem: "fas fa-mobile-alt",
         especificacoes: {
-            "Tela": "6.2 polegadas Dynamic AMOLED",
+            "Tela": "6.8 polegadas Dynamic AMOLED 2X",
             "Processador": "Snapdragon 8 Gen 3",
-            "RAM": "8GB/12GB",
-            "Armazenamento": "128GB/256GB/512GB",
-            "Câmera": "Tripla 200MP + 12MP + 50MP",
-            "Bateria": "4000mAh"
+            "RAM": "12GB/16GB",
+            "Armazenamento": "256GB/512GB/1TB",
+            "Câmera": "Quádrupla 200MP + 12MP + 50MP + 10MP",
+            "Bateria": "5000mAh com carregamento 45W",
+            "Sistema": "Android 14 + One UI 6.1"
         }
     },
     {
         id: 6,
-        nome: "Dell XPS 13",
+        nome: "Dell XPS 15 OLED",
         categoria: "laptops",
-        preco: "R$ 7.999",
-        descricao: "Notebook premium com tela InfinityEdge e processador Intel de 13ª geração.",
+        preco: "R$ 12.999",
+        descricao: "Notebook premium com tela OLED 4K, processador Intel de 14ª geração e design InfinityEdge.",
         imagem: "fas fa-laptop",
         especificacoes: {
-            "Tela": "13.4 polegadas 4K OLED",
-            "Processador": "Intel Core i7-1355U",
-            "RAM": "16GB LPDDR5",
-            "Armazenamento": "512GB SSD",
+            "Tela": "15.6 polegadas 4K OLED",
+            "Processador": "Intel Core i9-14900H",
+            "RAM": "32GB DDR5",
+            "Armazenamento": "1TB SSD NVMe",
+            "GPU": "NVIDIA RTX 4070 8GB",
             "Sistema": "Windows 11 Pro",
-            "Bateria": "Até 12 horas"
+            "Bateria": "Até 13 horas"
+        }
+    },
+    {
+        id: 7,
+        nome: "Apple Watch Series 9",
+        categoria: "acessorios",
+        preco: "R$ 3.999",
+        descricao: "Smartwatch com chip S9, detecção de queda avançada e monitoramento cardíaco preciso.",
+        imagem: "fas fa-watch",
+        especificacoes: {
+            "Tela": "Always-On Retina LTPO OLED",
+            "Processador": "Apple S9 SiP",
+            "Armazenamento": "64GB",
+            "Bateria": "Até 18 horas",
+            "Resistência": "IP6X + resistente a água",
+            "Sensores": "ECG, oxímetro, acelerômetro",
+            "Compatibilidade": "iPhone 8 ou posterior"
+        }
+    },
+    {
+        id: 8,
+        nome: "Nintendo Switch OLED",
+        categoria: "gaming",
+        preco: "R$ 2.999",
+        descricao: "Console híbrido com tela OLED de 7 polegadas, áudio aprimorado e maior armazenamento.",
+        imagem: "fas fa-gamepad",
+        especificacoes: {
+            "Tela": "7 polegadas OLED",
+            "Processador": "NVIDIA Tegra X1+",
+            "RAM": "4GB LPDDR4X",
+            "Armazenamento": "64GB",
+            "Resolução": "720p (portátil) / 1080p (dock)",
+            "Bateria": "Até 9 horas",
+            "Compatibilidade": "Todos os jogos Switch"
         }
     }
 ];
@@ -153,6 +193,7 @@ function carregarProdutos(categoria = null) {
                 <p class="product-description">${produto.descricao}</p>
                 <div class="product-price">${produto.preco}</div>
                 <button class="product-button" onclick="abrirModal(${produto.id})">
+                    <i class="fas fa-eye"></i>
                     Ver Detalhes
                 </button>
             </div>
@@ -179,7 +220,7 @@ function abrirModal(produtoId) {
                 </div>
             </div>
             <div class="modal-product-specs">
-                <h3>Especificações</h3>
+                <h3>Especificações Técnicas</h3>
                 <div class="specs-grid">
                     ${Object.entries(produto.especificacoes).map(([key, value]) => `
                         <div class="spec-item">
@@ -193,7 +234,7 @@ function abrirModal(produtoId) {
                     <i class="fas fa-whatsapp"></i> Contatar Vendedor
                 </button>
                 <button class="btn btn-secondary" onclick="fecharModal()">
-                    Fechar
+                    <i class="fas fa-times"></i> Fechar
                 </button>
             </div>
         </div>
@@ -251,7 +292,6 @@ const contactForm = document.querySelector('.contact-form');
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    const formData = new FormData(contactForm);
     const nome = contactForm.querySelector('input[type="text"]').value;
     const email = contactForm.querySelector('input[type="email"]').value;
     const telefone = contactForm.querySelector('input[type="tel"]').value;
@@ -288,11 +328,31 @@ function headerScroll() {
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
+            header.style.background = 'rgba(10, 10, 10, 0.98)';
+            header.style.boxShadow = '0 4px 20px rgba(0, 212, 255, 0.2)';
         } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.background = 'rgba(10, 10, 10, 0.95)';
+            header.style.boxShadow = 'none';
         }
     });
+}
+
+// Efeito de partículas no hero
+function criarParticulas() {
+    const hero = document.querySelector('.hero');
+    for (let i = 0; i < 50; i++) {
+        const particula = document.createElement('div');
+        particula.style.position = 'absolute';
+        particula.style.width = '2px';
+        particula.style.height = '2px';
+        particula.style.background = 'rgba(0, 212, 255, 0.5)';
+        particula.style.borderRadius = '50%';
+        particula.style.left = Math.random() * 100 + '%';
+        particula.style.top = Math.random() * 100 + '%';
+        particula.style.animation = `float ${Math.random() * 3 + 2}s ease-in-out infinite`;
+        particula.style.animationDelay = Math.random() * 2 + 's';
+        hero.appendChild(particula);
+    }
 }
 
 // Inicialização
@@ -300,6 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarProdutos();
     animarElementos();
     headerScroll();
+    criarParticulas();
 });
 
 // Estilos adicionais para o modal
@@ -318,8 +379,11 @@ const modalStyles = `
 
 .modal-product-image {
     font-size: 4rem;
-    color: #2563eb;
-    background: #f3f4f6;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
     padding: 2rem;
     border-radius: 12px;
     min-width: 120px;
@@ -329,18 +393,23 @@ const modalStyles = `
 .modal-product-info h2 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
-    color: #1f2937;
+    color: var(--text-primary);
+    font-weight: 800;
 }
 
 .modal-product-description {
-    color: #6b7280;
+    color: var(--text-secondary);
     margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
 .modal-product-price {
     font-size: 2rem;
-    font-weight: 700;
-    color: #2563eb;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .modal-product-specs {
@@ -350,7 +419,8 @@ const modalStyles = `
 .modal-product-specs h3 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
-    color: #1f2937;
+    color: var(--text-primary);
+    font-weight: 700;
 }
 
 .specs-grid {
@@ -360,10 +430,12 @@ const modalStyles = `
 }
 
 .spec-item {
-    padding: 0.5rem;
-    background: #f9fafb;
-    border-radius: 6px;
+    padding: 0.8rem;
+    background: var(--card-bg);
+    border-radius: 8px;
     font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .modal-product-actions {
