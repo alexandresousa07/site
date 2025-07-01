@@ -462,12 +462,19 @@ function selecionarProdutoBusca(produtoId) {
     });
 }
 
+// Função utilitária para detectar mobile
+function isMobile() {
+    return window.innerWidth <= 600 || /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     carregarProdutos();
-    animarElementos();
+    if (!isMobile()) {
+        animarElementos();
+        criarParticulas();
+    }
     headerScroll();
-    criarParticulas();
     inicializarBusca();
 });
 
