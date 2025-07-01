@@ -207,46 +207,87 @@ function carregarProdutos(categoria = null) {
     });
 }
 
-// Abrir modal do produto
+// Abrir modal do produto otimizado para mobile
 function abrirModal(produtoId) {
     const produto = produtos.find(p => p.id === produtoId);
     if (!produto) return;
 
-    modalContent.innerHTML = `
-        <div class="modal-product">
-            <div class="modal-product-header">
-                <div class="modal-product-image">
-                    <i class="${produto.imagem}"></i>
-                </div>
-                <div class="modal-product-info">
-                    <h2>${produto.nome}</h2>
-                    <p class="modal-product-description">${produto.descricao}</p>
-                    <div class="modal-product-price">${produto.preco}</div>
-                </div>
-            </div>
-            <div class="modal-product-specs">
-                <h3>Especificações Técnicas</h3>
-                <div class="specs-grid">
-                    ${Object.entries(produto.especificacoes).map(([key, value]) => `
-                        <div class="spec-item">
-                            <strong>${key}:</strong> ${value}
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-            <div class="modal-product-actions">
-                <button class="btn btn-primary" onclick="contatarVendedor('${produto.nome}')">
-                    <i class="fas fa-whatsapp"></i> Contatar Vendedor
-                </button>
-                <button class="btn btn-secondary" onclick="fecharModal()">
-                    <i class="fas fa-times"></i> Fechar
-                </button>
-            </div>
-        </div>
-    `;
-
+    // Adiciona loading
+    modalContent.innerHTML = '<div style="text-align:center;padding:2rem"><i class="fas fa-spinner fa-spin fa-2x"></i><br>Carregando...</div>';
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
+
+    // Renderiza conteúdo após pequeno delay (para evitar travamento)
+    setTimeout(() => {
+        if (isMobile()) {
+            // Modal simplificado para mobile
+            modalContent.innerHTML = `
+                <div class="modal-product">
+                    <div class="modal-product-header">
+                        <div class="modal-product-image">
+                            <i class="${produto.imagem}"></i>
+                        </div>
+                        <div class="modal-product-info">
+                            <h2>${produto.nome}</h2>
+                            <div class="modal-product-price">${produto.preco}</div>
+                        </div>
+                    </div>
+                    <div class="modal-product-specs">
+                        <h3>Especificações</h3>
+                        <div class="specs-grid">
+                            ${Object.entries(produto.especificacoes).slice(0, 4).map(([key, value]) => `
+                                <div class="spec-item">
+                                    <strong>${key}:</strong> ${value}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="modal-product-actions">
+                        <button class="btn btn-primary" onclick="contatarVendedor('${produto.nome}')">
+                            <i class="fas fa-whatsapp"></i> Contatar
+                        </button>
+                        <button class="btn btn-secondary" onclick="fecharModal()">
+                            <i class="fas fa-times"></i> Fechar
+                        </button>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Modal completo para desktop/tablet
+            modalContent.innerHTML = `
+                <div class="modal-product">
+                    <div class="modal-product-header">
+                        <div class="modal-product-image">
+                            <i class="${produto.imagem}"></i>
+                        </div>
+                        <div class="modal-product-info">
+                            <h2>${produto.nome}</h2>
+                            <p class="modal-product-description">${produto.descricao}</p>
+                            <div class="modal-product-price">${produto.preco}</div>
+                        </div>
+                    </div>
+                    <div class="modal-product-specs">
+                        <h3>Especificações Técnicas</h3>
+                        <div class="specs-grid">
+                            ${Object.entries(produto.especificacoes).map(([key, value]) => `
+                                <div class="spec-item">
+                                    <strong>${key}:</strong> ${value}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="modal-product-actions">
+                        <button class="btn btn-primary" onclick="contatarVendedor('${produto.nome}')">
+                            <i class="fas fa-whatsapp"></i> Contatar Vendedor
+                        </button>
+                        <button class="btn btn-secondary" onclick="fecharModal()">
+                            <i class="fas fa-times"></i> Fechar
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+    }, isMobile() ? 250 : 80); // Delay maior no mobile para suavizar transição
 }
 
 // Fechar modal
@@ -580,4 +621,77 @@ const modalStyles = `
 </style>
 `;
 
-document.head.insertAdjacentHTML('beforeend', modalStyles); 
+document.head.insertAdjacentHTML('beforeend', modalStyles);
+
+// --- Busca Mobile ---
+const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+const mobileSearchModal = document.getElementById('mobileSearchModal');
+const closeMobileSearch = document.getElementById('closeMobileSearch');
+const mobileSearchInput = document.getElementById('mobileSearchInput');
+const mobileSearchResults = document.getElementById('mobileSearchResults');
+
+if (mobileSearchBtn) {
+    mobileSearchBtn.addEventListener('click', () => {
+        mobileSearchModal.style.display = 'block';
+        setTimeout(() => mobileSearchInput.focus(), 200);
+        document.body.style.overflow = 'hidden';
+        mobileSearchInput.value = '';
+        mobileSearchResults.innerHTML = '';
+    });
+}
+if (closeMobileSearch) {
+    closeMobileSearch.addEventListener('click', () => {
+        mobileSearchModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+}
+if (mobileSearchInput) {
+    mobileSearchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim().toLowerCase();
+        if (query.length >= 2) {
+            const resultados = produtos.filter(produto =>
+                produto.nome.toLowerCase().includes(query) ||
+                produto.descricao.toLowerCase().includes(query) ||
+                produto.categoria.toLowerCase().includes(query)
+            );
+            if (resultados.length === 0) {
+                mobileSearchResults.innerHTML = `<div class='no-results'><i class='fas fa-search'></i><p>Nenhum produto encontrado</p></div>`;
+            } else {
+                mobileSearchResults.innerHTML = resultados.map(produto => `
+                    <div class='search-result-item' style='padding:0.7rem' onclick='selecionarProdutoBusca(${produto.id})'>
+                        <div class='search-result-icon'><i class='${produto.imagem}'></i></div>
+                        <div class='search-result-info'>
+                            <div class='search-result-name'>${produto.nome}</div>
+                            <div class='search-result-price'>${produto.preco}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        } else {
+            mobileSearchResults.innerHTML = '';
+        }
+    });
+}
+// Esconde modal de busca mobile ao clicar fora
+if (mobileSearchModal) {
+    mobileSearchModal.addEventListener('click', (e) => {
+        if (e.target === mobileSearchModal) {
+            mobileSearchModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+// Exibe só a lupa no mobile
+function toggleMobileSearchUI() {
+    if (window.innerWidth <= 600) {
+        if (mobileSearchBtn) mobileSearchBtn.style.display = 'flex';
+        const desktopSearch = document.querySelector('.desktop-search');
+        if (desktopSearch) desktopSearch.style.display = 'none';
+    } else {
+        if (mobileSearchBtn) mobileSearchBtn.style.display = 'none';
+        const desktopSearch = document.querySelector('.desktop-search');
+        if (desktopSearch) desktopSearch.style.display = 'flex';
+    }
+}
+window.addEventListener('resize', toggleMobileSearchUI);
+document.addEventListener('DOMContentLoaded', toggleMobileSearchUI); 
